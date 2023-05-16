@@ -115,6 +115,7 @@ function show() {
 }
 
 function Iii(props) {
+
   return (
     <div>
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
@@ -162,7 +163,6 @@ function exit() {
 const app = ReactDOMClient.createRoot(document.getElementById("app"))
 
 export function SetUserPage() {
-
   const request = new XMLHttpRequest();
 
   const url = "http://localhost:8080/lk";

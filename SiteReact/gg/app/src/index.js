@@ -5,23 +5,51 @@ import { SetUserPage, gc } from './userpage.js'
 import { k } from './tariffs'
 
 function MainPage() {
-/*   const request = new XMLHttpRequest();
+  /*   const request = new XMLHttpRequest();
+  
+    const url = "http://localhost:8080/s";
+  
+    request.open("POST", url, true);
+  
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+    request.addEventListener("readystatechange", () => {
+  
+      if (request.readyState === 4 && request.status === 200) {
+        console.log(request.responseText);
+        document.cookie = "v=" + request.responseText;
+      }
+    });
+  
+    request.send(); */
 
-  const url = "http://localhost:8080/s";
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('./sw.js')
+      .then(event => {
+        console.log('Service worker registered', event);
+      });
 
-  request.open("POST", url, true);
+    function requestPermission() {
+      return new Promise(function (resolve, reject) {
+        const permissionResult = Notification.requestPermission(function (result) {
+          // Поддержка устаревшей версии с функцией обратного вызова.
+          resolve(result);
+        });
 
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  request.addEventListener("readystatechange", () => {
-
-    if (request.readyState === 4 && request.status === 200) {
-      console.log(request.responseText);
-      document.cookie = "v=" + request.responseText;
+        if (permissionResult) {
+          permissionResult.then(resolve, reject);
+        }
+      })
+        .then(function (permissionResult) {
+          if (permissionResult !== 'granted') {
+            throw new Error('Permission not granted.');
+          }
+        });
     }
-  });
 
-  request.send(); */
+    requestPermission();
+  }
 
   return (
     <div>
