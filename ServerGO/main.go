@@ -5,6 +5,7 @@ import (
 	"log"
 	"main/modules/auth"
 	"main/modules/changepassword"
+	"main/modules/changerole"
 	"main/modules/changeusertariff"
 	"main/modules/chat"
 	"main/modules/userpage"
@@ -38,6 +39,7 @@ func main() {
 	http.HandleFunc("/tariffs", usertariff.GetTariffs)
 	http.HandleFunc("/settariff", changeusertariff.SetTariff)
 	http.HandleFunc("/chpass", changepassword.ChPass)
+	http.HandleFunc("/chrole", changerole.ChRole)
 	//http.HandleFunc("/s", Stat)
 
 	//Chat

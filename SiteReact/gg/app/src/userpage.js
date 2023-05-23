@@ -1,12 +1,15 @@
 import React from "react"
 import ReactDOMClient from "react-dom/client"
-import { k } from './tariffs'
+//import { k } from './tariffs'
 import { SetMainPage } from './index'
 import { VideoChat } from './videochat'
 import { chtariffset } from './changetariff'
 import { ctrlAcc } from './controlaccess'
 import { userSupport } from './usersupport'
 import { userTreaty } from './usertreaty'
+import { controlSchedule } from './schedule'
+import { sysStat } from './sysstats'
+import { Menue } from './index.js'
 
 /* var userPage = {
   Name: "Name",
@@ -83,7 +86,7 @@ function chpassser() {
   request.send(params);
 }
 
-function ShowUserInfo(props) {
+export function ShowUserInfo(props) {
   return (
     <div id="userFullInfo">
       <div id="inf">
@@ -109,7 +112,7 @@ function ShowUserInfo(props) {
   )
 }
 
-function show() {
+export function show() {
   const userSettings = ReactDOMClient.createRoot(document.getElementById("userInformation"));
   userSettings.render(<ShowUserInfo u={userPage} />);
 }
@@ -118,12 +121,13 @@ function Iii(props) {
 
   return (
     <div>
+      <Menue name="Личный кабинет" g="1" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-        <a><p onClick={show}>Личная информация</p></a>
+{/*         <a><p onClick={show}>Личная информация</p></a>
         <a><p onClick={userSupport}>Поддержка</p></a>
         <a><p onClick={userTreaty}>Информация договора</p></a>
-        <a><p onClick={exit}>Выйти</p></a>
+        <a><p onClick={exit}>Выйти</p></a> */}
       </div>
       <div id="userInformation">
         <div id="inf">
@@ -137,23 +141,111 @@ function Iii(props) {
 }
 
 //SysAdmin
+function GetMess() {
+  return (
+    <div>
+      <p>Список сообщений</p>
+      <select size="10" id="listTariff">
+        <option>234</option>
+      </select>
+      <button>Готово</button>
+
+      <p>Текст сообщения</p>
+      <textarea placeholder="Результат" id="nameTariffch"></textarea>
+    </div>
+  )
+}
+
+export function getMess() {
+  const userSettings = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
+  userSettings.render(<GetMess />);
+}
+
 function Iii2(props) {
   return (
     <div>
+      <Menue name="Личный кабинет" g="4" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-        <a><p>Личная информация</p></a>
+{/*     <a><p>Личная информация</p></a>
         <a><p onClick={chtariffset}>Управление тарифами</p></a>
         <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
         <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
-        <a><p onClick={exit}>Выйти</p></a>
+        <a><p onClick={controlSchedule}>Управление расписанием</p></a>
+        <a><p onClick={sysStat}>Статистика</p></a>
+        <a><p onClick={exit}>Выйти</p></a> */}
       </div>
       <div id="fullinfo"></div>
     </div>
   )
 }
 
-function exit() {
+//analitik
+function Iii3(props) {
+  return (
+    <div>
+      <Menue name="Личный кабинет" g="5" />
+      <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
+      <div id="userSettings">
+{/*     <a><p>Личная информация</p></a>
+        <a><p onClick={chtariffset}>Управление тарифами</p></a>
+        <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
+        <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
+        <a><p onClick={controlSchedule}>Управление расписанием</p></a>
+        <a><p onClick={sysStat}>Статистика</p></a>
+        <a><p onClick={exit}>Выйти</p></a> */}
+      </div>
+      <div id="fullinfo"></div>
+    </div>
+  )
+}
+
+//Support
+function GetSup() {
+  return (
+    <div>
+      <p>Список обращений</p>
+      <select size="10" id="listTariff">
+        <option>234</option>
+      </select>
+      <button>Готово</button>
+
+      <p>Текст сообщения</p>
+      <textarea placeholder="Результат" id="nameTariffch"></textarea>
+
+      <p>Ответ</p>
+      <textarea placeholder="Ответ" id="nameTariffch"></textarea>
+      <button>Отправить</button>
+      <button>Отправить сисадмину</button>
+    </div>
+  )
+}
+
+export function getSup() {
+  const userSettings = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
+  userSettings.render(<GetSup />);
+}
+
+function Iii4(props) {
+  return (
+    <div>
+      <Menue name="Личный кабинет" g="6" />
+      <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
+      <div id="userSettings">
+{/*     <a><p>Личная информация</p></a>
+        <a><p onClick={chtariffset}>Управление тарифами</p></a>
+        <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
+        <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
+        <a><p onClick={controlSchedule}>Управление расписанием</p></a>
+        <a><p onClick={sysStat}>Статистика</p></a>
+        <a><p onClick={exit}>Выйти</p></a> */}
+      </div>
+      <div id="fullinfo"></div>
+    </div>
+  )
+}
+
+export function exit() {
   //document.cookie = "login=0;max-age=0";
   //document.cookie = "password=0;max-age=0";
   document.cookie = "key=0;max-age=0";
@@ -181,9 +273,13 @@ export function SetUserPage() {
       userPage = obj;
 
       if (obj.Role === 0) {
-        app.render(<Iii u={obj} />);
+        app.render(<Iii u={obj} />); //Client
       } else if (obj.Role === 1) {
-        app.render(<Iii2 u={obj} />);
+        app.render(<Iii2 u={obj} />); //SysAdmin
+      } else if (obj.Role === 2) {
+        app.render(<Iii3 u={obj} />); //Analitik
+      } else if (obj.Role === 3) {
+        app.render(<Iii4 u={obj} />); //Support
       }
     }
   });

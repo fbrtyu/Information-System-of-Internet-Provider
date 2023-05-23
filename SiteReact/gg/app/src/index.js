@@ -1,10 +1,43 @@
-import React from "react"
+import React, { useState } from "react"
 import ReactDOMClient from "react-dom/client"
 import './index.css'
+import './menue.css'
 import { SetUserPage, gc } from './userpage.js'
 import { k } from './tariffs'
+import Menue2 from "./Menue/Menue2"
+import './Menue/menue2.css'
+import { ShowTariffs } from './tariffs'
+import { getTokenn, onMessageListener  } from './firebase.js'
 
-function MainPage() {
+function App() {
+
+  const [show, setShow] = useState(false);
+  const [notification, setNotification] = useState({title: '', body: ''});
+  const [isTokenFound, setTokenFound] = useState(false);
+  getTokenn(setTokenFound);
+
+  onMessageListener().then(payload => {
+    setShow(true);
+    setNotification({title: payload.notification.title, body: payload.notification.body})
+    console.log(payload);
+  }).catch(err => console.log('failed: ', err));
+
+  return (
+    <div className="App">
+        
+      <header className="App-header">
+        {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
+        {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
+        
+        
+      </header>
+
+
+    </div>
+  );
+}
+
+export function MainPage() {
   /*   const request = new XMLHttpRequest();
   
     const url = "http://localhost:8080/s";
@@ -23,41 +56,49 @@ function MainPage() {
   
     request.send(); */
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('./sw.js')
-      .then(event => {
-        console.log('Service worker registered', event);
-      });
-
-    function requestPermission() {
-      return new Promise(function (resolve, reject) {
-        const permissionResult = Notification.requestPermission(function (result) {
-          // Поддержка устаревшей версии с функцией обратного вызова.
-          resolve(result);
+  /*   if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then(event => {
+          console.log('Service worker registered', event);
         });
-
-        if (permissionResult) {
-          permissionResult.then(resolve, reject);
-        }
-      })
-        .then(function (permissionResult) {
-          if (permissionResult !== 'granted') {
-            throw new Error('Permission not granted.');
+  
+      function requestPermission() {
+        return new Promise(function (resolve, reject) {
+          const permissionResult = Notification.requestPermission(function (result) {
+            // Поддержка устаревшей версии с функцией обратного вызова.
+            resolve(result);
+          });
+  
+          if (permissionResult) {
+            permissionResult.then(resolve, reject);
           }
-        });
-    }
+        })
+          .then(function (permissionResult) {
+            if (permissionResult !== 'granted') {
+              throw new Error('Permission not granted.');
+            }
+          });
+      }
+  
+      requestPermission();
+    } */
 
-    requestPermission();
-  }
+  const [isTokenFound, setTokenFound] = useState(false);
+  getTokenn(setTokenFound);
 
   return (
     <div>
+      <main>
+        {isTokenFound && <>Notification permission enabled 👍🏻</>}
+        {!isTokenFound && <>Need notification permission ❗️</>}
+      </main>
       <h1>Главная страница</h1>
-      <p onClick={k}>Вывести все тарифы</p>
+      {/* <p onClick={menue}>Тест меню</p> */}
+      {/*       <p onClick={k}>Вывести все тарифы</p>
       <p onClick={SetLogin}>Вход</p>
       <p onClick={SetReg}>Регистрация</p>
-      <p></p>
+      <p></p> */}
     </div>
   )
 }
@@ -66,7 +107,9 @@ export function SetMainPage() {
   if (gc("key")) {
     app.render(<SetUserPage />);
   } else {
-    app.render(<MainPage />);
+    //app.render(<MainPage />);
+    //app.render(<Menue />);
+    menue(<MainPage />);
   }
 }
 
@@ -83,7 +126,7 @@ function Login() {
   );
 }
 
-function SetLogin() {
+export function SetLogin() {
   app.render(<Login />)
 }
 
@@ -101,7 +144,7 @@ function Reg() {
   );
 }
 
-function SetReg() {
+export function SetReg() {
   app.render(<Reg />)
 }
 
@@ -156,6 +199,29 @@ function loginFunc() {
   });
 
   request.send(params);
+}
+
+//menue
+export function Menue(props) {
+  const [menueActive, setMenueActive] = useState(false);
+  const items = [{ value: "Main", href: "/main", icon: "anchor" }, { value: "Main2", href: "/main", icon: "anchor" }]
+  return (
+    <div className="app">
+      <nav>
+        <div className="burger-btn" onClick={() => setMenueActive(!menueActive)}>
+          <span></span>
+        </div>
+      </nav>
+      <main>
+        {props.m}
+      </main>
+      <Menue2 active={menueActive} setActive={setMenueActive} header={props.name} items={props.items} g={props.g} />
+    </div>
+  );
+};
+
+export function menue(props) {
+  app.render(<Menue g="2" m={props} name="Главная" items={[{ value: "Тест", href: "/main", icon: "anchor" }]} />);
 }
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"))

@@ -7,7 +7,7 @@ body {
 }
 
 .box{
-    width: 300px;
+    width: 400px;
     padding: 40px;
     position: absolute;
     top: 50%;
@@ -135,6 +135,14 @@ a:visited {
 }
 
 #controlTariff {
+    display: inline-flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+#controlSchedule {
     display: inline-flex;
     flex-direction: row;
     width: 80%;

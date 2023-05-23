@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    height: 50px;
+    width: 100%;
+    background-color: gray;
+    position: fixed;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    padding: 50px;
+}
+
+p {
+    margin: 20px;
+}
+
+.burger-btn {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    position: relative;
+}
+
+.burger-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+}
+
+.burger-btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+}
+
+.burger-btn span {
+    position: absolute;
+    top: 9px;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+    cursor: pointer;
+}

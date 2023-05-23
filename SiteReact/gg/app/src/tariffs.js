@@ -1,6 +1,7 @@
 import React, { useId, useState } from "react"
 import ReactDOMClient from "react-dom/client"
 import { gc } from './userpage.js'
+import { Menue } from './index.js'
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"));
 
@@ -35,15 +36,15 @@ function tariffs() {
     request.send();
 }
 
-function ShowTariffs(props) {
+export function ShowTariffs(props) {
     let [click, setClick] = useState("");
     
     let res = props.t.map(function (item) {
         return <div key={item.ID}>
-            <p>Название: {item.Name} Стоимость: {item.Cost}
+            <p>Название: {item.Name} Стоимость: {item.Cost} руб.
                 <button onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
-                <p>{item.Speed}</p>
+                <p>Скорость: {item.Speed} Мбит/с</p>
             </div>
         </div>;
     });
@@ -62,28 +63,14 @@ function ShowTariffs(props) {
     if (gc("login")) {
         return (
             <div>
-                <header>
-                    <div id="up">
-                        <a href="/">Личный кабинет</a>
-                        <a>Тарифы</a>
-                        <a>О нас</a>
-                    </div>
-                </header>
+                <Menue name="Тарифы" items={[{value: "Тест", href: "/main", icon: "anchor"}]} g="3"/>
                 {res2}
             </div>
         )
     } else {
         return (
             <div>
-                <header>
-                    <div id="up">
-                        <a href="/">Личный кабинет</a>
-                        <a>Вход</a>
-                        <a>Регистрация</a>
-                        <a>Тарифы</a>
-                        <a>О нас</a>
-                    </div>
-                </header>
+                <Menue name="Тарифы" items={[{value: "Тест", href: "/main", icon: "anchor"}]} g="3"/>
                 {res}
             </div>
         )

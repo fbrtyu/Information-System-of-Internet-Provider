@@ -53,7 +53,7 @@ func GetUserPage(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	if user.Role == 1 {
+	if user.Role == 1 || user.Role == 2 || user.Role == 3 {
 		encoder := json.NewEncoder(w)
 		err := encoder.Encode(user)
 		if err != nil {
