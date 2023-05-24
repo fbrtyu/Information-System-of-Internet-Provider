@@ -40,6 +40,8 @@ func main() {
 	http.HandleFunc("/settariff", changeusertariff.SetTariff)
 	http.HandleFunc("/chpass", changepassword.ChPass)
 	http.HandleFunc("/chrole", changerole.ChRole)
+
+	//fcm.PushNote()
 	//http.HandleFunc("/s", Stat)
 
 	//Chat

@@ -149,3 +149,36 @@ a:visited {
     justify-content: space-evenly;
     margin: 10px;
 }
+
+#news {
+    display: flex;
+    flex-direction: row;
+}
+
+#news1 {
+    background-color: gray;
+    width: 500px;
+    height: 300px;
+
+    width: 80%;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+#news2 {
+    background-color: gray;
+    width: 500px;
+    height: 300px;
+
+    width: 80%;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+#btntariff {
+    margin-left: 5px;
+}
+
+#chtariff1 {
+    text-align: left;
+}

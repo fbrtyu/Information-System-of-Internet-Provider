@@ -4,7 +4,7 @@ import ReactDOMClient from "react-dom/client"
 function Chtariff() {
     return (
         <div id="controlTariff">
-            <div>
+            <div id="chtariff1">
                 <p>Добавить тариф</p>
                 <label for="nameTariff">Название </label>
                 <input type="text" id="nameTariff"></input>
@@ -18,7 +18,7 @@ function Chtariff() {
                 <button>Добавить</button>
             </div>
 
-            <div>
+            <div id="chtariff1">
                 <p>Изменение тарифа</p>
                 <label for="nameTariffch">Название </label>
                 <input type="text" id="nameTariffch"></input>

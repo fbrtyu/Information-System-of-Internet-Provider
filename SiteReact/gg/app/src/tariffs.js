@@ -41,10 +41,11 @@ export function ShowTariffs(props) {
     
     let res = props.t.map(function (item) {
         return <div key={item.ID}>
-            <p>Название: {item.Name} Стоимость: {item.Cost} руб.
-                <button onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
+            <p>Название: {item.Name}
+                <button id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
                 <p>Скорость: {item.Speed} Мбит/с</p>
+                <p>Стоимость: {item.Cost} руб.</p>
             </div>
         </div>;
     });

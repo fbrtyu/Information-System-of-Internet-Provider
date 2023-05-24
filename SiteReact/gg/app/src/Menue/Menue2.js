@@ -18,9 +18,9 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
         let sigind = "0";
 
         if (sigind === "0") {
-            document.getElementById("sig").innerText = "Выкл. уведомления";
+            //document.getElementById("sig").innerText = "Выкл. уведомления";
         } else {
-            document.getElementById("sig").innerText = "Вкл. уведомления";
+            //document.getElementById("sig").innerText = "Вкл. уведомления";
         }
 
         function sig() {
@@ -62,7 +62,7 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                         </li>
 
                         <li>
-                            <p id="sig" onClick={sig}>123</p>
+                            <p id="sig" onClick={sig}>Выкл. уведомления</p>
                             <span className="material-icons">иконка</span>
                         </li>
 

@@ -24,15 +24,10 @@ function App() {
 
   return (
     <div className="App">
-        
       <header className="App-header">
         {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
         {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
-        
-        
       </header>
-
-
     </div>
   );
 }
@@ -89,16 +84,20 @@ export function MainPage() {
 
   return (
     <div>
-      <main>
-        {isTokenFound && <>Notification permission enabled 👍🏻</>}
-        {!isTokenFound && <>Need notification permission ❗️</>}
-      </main>
       <h1>Главная страница</h1>
-      {/* <p onClick={menue}>Тест меню</p> */}
-      {/*       <p onClick={k}>Вывести все тарифы</p>
-      <p onClick={SetLogin}>Вход</p>
-      <p onClick={SetReg}>Регистрация</p>
-      <p></p> */}
+        {isTokenFound && <>Уведомления включены 👍🏻</>}
+        {!isTokenFound && <>Need notification permission ❗️</>}
+      <main>
+        <div id="news">
+            <div id="news1">
+              Новости
+            </div>
+
+            <div id="news2">
+              Акции
+            </div>
+        </div>
+      </main>
     </div>
   )
 }
