@@ -3,12 +3,12 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCXMZ8dNAdAsIFdu5Dx1m6Hl-PanSU4YL4",
-  authDomain: "diplom-45232.firebaseapp.com",
-  projectId: "diplom-45232",
-  storageBucket: "diplom-45232.appspot.com",
-  messagingSenderId: "1072434267743",
-  appId: "1:1072434267743:web:bb5d50bea1fe7f2366bdea"
+  apiKey: "AIzaSyCjo3ZdOvCp6P6gEpk81pjbafziXXSk2uM",
+  authDomain: "test1-86af7.firebaseapp.com",
+  projectId: "test1-86af7",
+  storageBucket: "test1-86af7.appspot.com",
+  messagingSenderId: "216412241864",
+  appId: "1:216412241864:web:cd88c833148dae17570afd"
 };
 
 // Initialize Firebase
@@ -18,9 +18,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 
 export const getTokenn = (setTokenFound) => {
-    return getToken(messaging, {vapidKey: 'BHTIKXqw37l1s3dfGStqqn_M3fbUYLn3pCXBUJICatpQQuUlMcYFx4alkk3oqfxbzN11hDTbOv7Insb8kK5g9y4'}).then((currentToken) => {
+    return getToken(messaging, {vapidKey: 'BB2VqU4JqEMT67ioqIxNnoVPrV6HM6l45hjuSq2VUiTuH0Gy_FWwx1x3LFOwC90ik-Jw4jIr5L5JenJwmy1VQzI'}).then((currentToken) => {
       if (currentToken) {
-        console.log('current token for client: ', currentToken);
+        //console.log('current token for client: ', currentToken);
         setTokenFound(true);
         // Track the token -> client mapping, by sending to backend server
         // show on the UI that permission is secured

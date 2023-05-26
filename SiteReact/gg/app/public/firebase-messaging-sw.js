@@ -4,12 +4,12 @@ importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compa
 
 // Initialize the Firebase app in the service worker by passing the generated config
 var firebaseConfig = {
-    apiKey: "AIzaSyCXMZ8dNAdAsIFdu5Dx1m6Hl-PanSU4YL4",
-    authDomain: "diplom-45232.firebaseapp.com",
-    projectId: "diplom-45232",
-    storageBucket: "diplom-45232.appspot.com",
-    messagingSenderId: "1072434267743",
-    appId: "1:1072434267743:web:bb5d50bea1fe7f2366bdea"
+  apiKey: "AIzaSyCjo3ZdOvCp6P6gEpk81pjbafziXXSk2uM",
+  authDomain: "test1-86af7.firebaseapp.com",
+  projectId: "test1-86af7",
+  storageBucket: "test1-86af7.appspot.com",
+  messagingSenderId: "216412241864",
+  appId: "1:216412241864:web:cd88c833148dae17570afd"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -18,11 +18,11 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function(payload) {
-  console.log('Received background message ', payload);
+  //console.log('Received background message ', payload);
 
-  const notificationTitle = payload.notification.title;
+  const notificationTitle = payload.data.title;
   const notificationOptions = {
-    body: payload.notification.body,
+    body: payload.data.body,
   };
 
   self.registration.showNotification(notificationTitle,

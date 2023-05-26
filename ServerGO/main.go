@@ -4,11 +4,14 @@ import (
 	"fmt"
 	"log"
 	"main/modules/auth"
+	"main/modules/chInfo"
 	"main/modules/changepassword"
 	"main/modules/changerole"
 	"main/modules/changeusertariff"
 	"main/modules/chat"
+	"main/modules/fcm"
 	"main/modules/userpage"
+	"main/modules/usersup"
 	"main/modules/usertariff"
 	"net/http"
 
@@ -40,8 +43,10 @@ func main() {
 	http.HandleFunc("/settariff", changeusertariff.SetTariff)
 	http.HandleFunc("/chpass", changepassword.ChPass)
 	http.HandleFunc("/chrole", changerole.ChRole)
+	http.HandleFunc("/setinfo", chInfo.SetInfo)
+	http.HandleFunc("/supuser", usersup.GetSup)
 
-	//fcm.PushNote()
+	fcm.PushNote()
 	//http.HandleFunc("/s", Stat)
 
 	//Chat

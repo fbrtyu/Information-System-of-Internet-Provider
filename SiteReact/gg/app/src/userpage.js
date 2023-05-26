@@ -1,7 +1,6 @@
 import React from "react"
 import ReactDOMClient from "react-dom/client"
 //import { k } from './tariffs'
-import { SetMainPage } from './index'
 import { VideoChat } from './videochat'
 import { chtariffset } from './changetariff'
 import { ctrlAcc } from './controlaccess'
@@ -9,7 +8,8 @@ import { userSupport } from './usersupport'
 import { userTreaty } from './usertreaty'
 import { controlSchedule } from './schedule'
 import { sysStat } from './sysstats'
-import { Menue } from './index.js'
+import { Menue, SetMainPage } from './index.js'
+import { chInfo } from './changeInfo.js'
 
 /* var userPage = {
   Name: "Name",
@@ -101,7 +101,7 @@ export function ShowUserInfo(props) {
         <p>Адрес: {props.u.Address}</p>
         <p>Мобильный: {props.u.Mobile}</p>
         <p>E-mail: {props.u.Email}</p>
-        <button>Изменить данные</button>
+        <button onClick={chInfo}>Изменить данные</button>
       </div>
       <div id="inf">
         <p>Номер счёта: {props.u.AccountNumber}</p>

@@ -2,48 +2,41 @@ package fcm
 
 import (
 	"context"
-	"log"
-
 	"fmt"
+	"log"
 
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/messaging"
 )
 
 func PushNote() {
-	conf := &firebase.Config{
-		ServiceAccountID: "firebase-adminsdk-1vtsk@diplom-45232.iam.gserviceaccount.com",
-		ProjectID:        "diplom-45232",
-		StorageBucket:    "diplom-45232.appspot.com",
-	}
-
-	app, err := firebase.NewApp(context.Background(), conf)
+	app, err := firebase.NewApp(context.Background(), nil)
 	if err != nil {
 		log.Fatalf("error initializing app: %v\n", err)
 	}
 
 	// Obtain a messaging.Client from the App.
 	ctx := context.Background()
-	client, err := app.Messaging(ctx)
+	client2, err := app.Messaging(ctx)
 	if err != nil {
 		log.Fatalf("error getting Messaging client: %v\n", err)
 	}
 
 	// This registration token comes from the client FCM SDKs.
-	registrationToken := "cGNLNtG_eh7TL2CWAzVwIX:APA91bFHd7_eVF7-vXWmYBSd6l611DKsyTa4zyFzpzAjTH-YQYnOWk_dX6e0h56JloydJywKwNJj2x9C3juWnRc8elogcUqyAELFdVeQtDe5vgbVjxRmORMBWkhiL03jcMRnlGHM4nyK"
+	registrationToken := "dkSHMcmqzjRByF5Ahhy0U5:APA91bFbJFCNq4JsPMtvMXunC0JSyF7cOvSeXF2M5a7qjarfSUYpAJ4hiYin8ZaIOCcvODLCsV_4pSw0BST1lT-R93CJKRoF-bAhEIwiI0vX9BmKZZ6s-dldKTSFZ0VlWZI7ZKziZk2j"
 
 	// See documentation on defining a message payload.
-	message := &messaging.Message{
+	message2 := &messaging.Message{
 		Data: map[string]string{
-			"score": "850",
-			"time":  "2:45",
+			"title": "1111",
+			"body":  "11111111",
 		},
 		Token: registrationToken,
 	}
 
 	// Send a message to the device corresponding to the provided
 	// registration token.
-	response, err := client.Send(ctx, message)
+	response, err := client2.Send(ctx, message2)
 	if err != nil {
 		log.Fatalln(err)
 	}
