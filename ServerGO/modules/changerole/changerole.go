@@ -45,3 +45,23 @@ func ChRole(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write([]byte(ja))
 }
+
+func SetRole(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	r.ParseForm()
+
+	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/test")
+	if err != nil {
+		panic(err)
+	}
+
+	//var user Client
+	//var ja string
+
+	_, err = db.Exec("UPDATE useraccess SET Role = ? WHERE Login = ?", r.FormValue("Role"), r.FormValue("Login"))
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+}

@@ -12,15 +12,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-
 const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 
 export const getTokenn = (setTokenFound) => {
     return getToken(messaging, {vapidKey: 'BB2VqU4JqEMT67ioqIxNnoVPrV6HM6l45hjuSq2VUiTuH0Gy_FWwx1x3LFOwC90ik-Jw4jIr5L5JenJwmy1VQzI'}).then((currentToken) => {
       if (currentToken) {
-        //console.log('current token for client: ', currentToken);
+        console.log('current token for client: ', currentToken);
         setTokenFound(true);
         // Track the token -> client mapping, by sending to backend server
         // show on the UI that permission is secured

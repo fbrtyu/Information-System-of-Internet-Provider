@@ -14,6 +14,7 @@ function setV(props) {
     console.log(tariff.Body);
 
     document.getElementById("nameTariffch").value = tariff.Body;
+    document.getElementById("ansSup").value = tariff.Answer;
 }
 
 function UserSupport(props) {
@@ -27,10 +28,11 @@ function UserSupport(props) {
     return (
         <div id="controlTariff">
             <div>
-                <p>Обращение</p>
+                <p id="suptext">Обращение</p>
                 <textarea placeholder="Текст обращения" id="nameTariffch"></textarea>
                 <br></br><br></br>
-                <button>Отправить</button>
+                <button id="btnsup" onClick={sendsup}>Отправить</button>
+                <textarea placeholder="Ответ" id="ansSup"></textarea>
             </div>
 
             <div>
@@ -48,7 +50,7 @@ function sendsup() {
 
     const url = "http://localhost:8080/sendsup";
 
-    const params = "key=" + gc("key"); //id_client
+    const params = "key=" + gc("key") + "&Body=" + document.getElementById("nameTariffch").value;
 
     request.open("POST", url, true);
 
@@ -57,22 +59,18 @@ function sendsup() {
     request.addEventListener("readystatechange", () => {
 
         if (request.readyState === 4 && request.status === 200) {
-            var answer = request.responseText;
-            //var array = answer.split(';');
-
-            //for (let i = 1; i < array.length; i++) {
-            //    obj = JSON.parse(array[i]);
-            //    ta.push(obj);
-            //}
+                //document.getElementById("btnsup").style.display = "none";
+                //document.getElementById("suptext").textContent = "Обращение отправлено";
+                //window.location.reload();
+                userSupport();
         }
-        //const userInformation = ReactDOMClient.createRoot(document.getElementById("userInformation"));
-        //userInformation.render(<UserSupport t={ta} />);
     });
 
     request.send(params);
 }
 
 export function userSupport() {
+    ta = [];
 
     const request = new XMLHttpRequest();
 

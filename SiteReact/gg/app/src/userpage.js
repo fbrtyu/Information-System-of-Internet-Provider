@@ -10,21 +10,9 @@ import { controlSchedule } from './schedule'
 import { sysStat } from './sysstats'
 import { Menue, SetMainPage } from './index.js'
 import { chInfo } from './changeInfo.js'
-
-/* var userPage = {
-  Name: "Name",
-  Speed: "Speed",
-  Cost: "Cost",
-  IDtariff: "IDtariff",
-  IDClient: "IDClient",
-  Role: "Role",
-  AccountNumber: "AccountNumber",
-  Balans: "Balans",
-  FIO: "FIO",
-  Address: "Address",
-  Mobile: "Mobile",
-  Email: "Email"
-} */
+import { useState } from "react"
+import { ShowTariffs } from './tariffs'
+import { ShowTariffs2 } from './tariffs'
 
 export var userPage;
 
@@ -75,7 +63,6 @@ function chpassser() {
   request.addEventListener("readystatechange", () => {
 
     if (request.readyState === 4 && request.status === 200) {
-      //document.cookie = "key=" + request.responseText + ";max-age=3600";
       document.getElementById("chpassb").style.display = "none";
       document.getElementById("messchpass").style = "block";
     } else {
@@ -124,7 +111,7 @@ function Iii(props) {
       <Menue name="Личный кабинет" g="1" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-{/*         <a><p onClick={show}>Личная информация</p></a>
+        {/*         <a><p onClick={show}>Личная информация</p></a>
         <a><p onClick={userSupport}>Поддержка</p></a>
         <a><p onClick={userTreaty}>Информация договора</p></a>
         <a><p onClick={exit}>Выйти</p></a> */}
@@ -167,7 +154,7 @@ function Iii2(props) {
       <Menue name="Личный кабинет" g="4" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-{/*     <a><p>Личная информация</p></a>
+        {/*     <a><p>Личная информация</p></a>
         <a><p onClick={chtariffset}>Управление тарифами</p></a>
         <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
         <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
@@ -187,7 +174,7 @@ function Iii3(props) {
       <Menue name="Личный кабинет" g="5" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-{/*     <a><p>Личная информация</p></a>
+        {/*     <a><p>Личная информация</p></a>
         <a><p onClick={chtariffset}>Управление тарифами</p></a>
         <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
         <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
@@ -201,29 +188,101 @@ function Iii3(props) {
 }
 
 //Support
-function GetSup() {
+var obj;
+
+var ta = [];
+
+var idSup = 0;
+
+function setV(props) {
+  console.log(props);
+  console.log(ta);
+  var tariff = ta.find(el => el.Date == props);
+  console.log(tariff.Body);
+  idSup = tariff.ID;
+  document.getElementById("nameTariffch").value = tariff.Body;
+}
+
+function sendsup() {
+  const request = new XMLHttpRequest();
+
+  const url = "http://localhost:8080/anssup";
+
+  const params = "Answer=" + document.getElementById("answerSup").value + "&ID=" + idSup;
+
+  request.open("POST", url, true);
+
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  request.addEventListener("readystatechange", () => {
+
+    if (request.readyState === 4 && request.status === 200) {
+      getSup();
+    }
+  });
+
+  request.send(params);
+}
+
+function GetSup(props) {
+  const [value, setValue] = useState('');
+
+  const options = props.t.map((item) => {
+    if (item.State == 1) {
+      return <option key={item.ID}>{item.Date}</option>;
+    }
+
+  });
+
   return (
-    <div>
-      <p>Список обращений</p>
-      <select size="10" id="listTariff">
-        <option>234</option>
-      </select>
-      <button>Готово</button>
+    <div id="controlTariff">
+      <div>
+        <p id="suptext">Обращение</p>
+        <textarea placeholder="Текст обращения" id="nameTariffch"></textarea>
+        <br></br><br></br>
+        <textarea placeholder="Ответ" id="answerSup"></textarea>
+        <button id="btnsup" onClick={sendsup}>Отправить</button>
+      </div>
 
-      <p>Текст сообщения</p>
-      <textarea placeholder="Результат" id="nameTariffch"></textarea>
-
-      <p>Ответ</p>
-      <textarea placeholder="Ответ" id="nameTariffch"></textarea>
-      <button>Отправить</button>
-      <button>Отправить сисадмину</button>
+      <div>
+        <p>История обращений</p>
+        <select id="listTariff" size="3" value={value} onChange={(event) => { setValue(event.target.value); setV(event.target.value) }}>
+          {options}
+        </select>
+      </div>
     </div>
   )
 }
 
 export function getSup() {
-  const userSettings = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
-  userSettings.render(<GetSup />);
+  ta = [];
+
+  const request = new XMLHttpRequest();
+
+  const url = "http://localhost:8080/getsup";
+
+  //const params = "key=" + gc("key");
+
+  request.open("GET", url, true);
+
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  request.addEventListener("readystatechange", () => {
+
+    if (request.readyState === 4 && request.status === 200) {
+      var answer = request.responseText;
+      var array = answer.split(';');
+
+      for (let i = 1; i < array.length; i++) {
+        obj = JSON.parse(array[i]);
+        ta.push(obj);
+      }
+    }
+    const userSettings = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
+    userSettings.render(<GetSup t={ta} />);
+  });
+
+  request.send();
 }
 
 function Iii4(props) {
@@ -232,7 +291,7 @@ function Iii4(props) {
       <Menue name="Личный кабинет" g="6" />
       <h1><a href="/" style={{ color: "brightblue" }}>Личный кабинет</a></h1>
       <div id="userSettings">
-{/*     <a><p>Личная информация</p></a>
+        {/*     <a><p>Личная информация</p></a>
         <a><p onClick={chtariffset}>Управление тарифами</p></a>
         <a><p onClick={ctrlAcc}>Управление правами доступа</p></a>
         <a><p onClick={VideoChat}>Смотреть трансляцию</p></a>
@@ -246,15 +305,48 @@ function Iii4(props) {
 }
 
 export function exit() {
-  //document.cookie = "login=0;max-age=0";
-  //document.cookie = "password=0;max-age=0";
   document.cookie = "key=0;max-age=0";
   app.render(<SetMainPage />);
 }
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"))
 
+var obj;
+
+var ta = [];
+
+function tariffs2() {
+  ta = [];
+
+  const request = new XMLHttpRequest();
+
+  const url = "http://localhost:8080/tariffs";
+
+  request.open("GET", url, true);
+
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  request.addEventListener("readystatechange", () => {
+
+      if (request.readyState === 4 && request.status === 200) {
+          var answer = request.responseText;
+          var array = answer.split(';');
+
+          for (let i = 1; i < array.length; i++) {
+              obj = JSON.parse(array[i]);
+              ta.push(obj);
+          }
+      }
+      //app.render(<ShowTariffs t={ta} />);
+      const userInformation = ReactDOMClient.createRoot(document.getElementById("app"));
+      userInformation.render(<ShowTariffs2 t={ta} />);
+  });
+
+  request.send();
+}
+
 export function SetUserPage() {
+
   const request = new XMLHttpRequest();
 
   const url = "http://localhost:8080/lk";
@@ -268,18 +360,26 @@ export function SetUserPage() {
   request.addEventListener("readystatechange", () => {
 
     if (request.readyState === 4 && request.status === 200 && request.responseText !== "You no login!") {
-      const obj = JSON.parse(request.responseText);
+      console.log(request.responseText);
+      if (request.responseText === "bad") {
+        document.cookie = "t=" + request.responseText + ";max-age=3600";
+        //const userInformation = ReactDOMClient.createRoot(document.getElementById("app"));
+        //app.render(<ShowTariffs t={ta} />);
+        tariffs2();
+      } else {
+        const obj = JSON.parse(request.responseText);
 
-      userPage = obj;
+        userPage = obj;
 
-      if (obj.Role === 0) {
-        app.render(<Iii u={obj} />); //Client
-      } else if (obj.Role === 1) {
-        app.render(<Iii2 u={obj} />); //SysAdmin
-      } else if (obj.Role === 2) {
-        app.render(<Iii3 u={obj} />); //Analitik
-      } else if (obj.Role === 3) {
-        app.render(<Iii4 u={obj} />); //Support
+        if (obj.Role === 0) {
+          app.render(<Iii u={obj} />); //Client
+        } else if (obj.Role === 1) {
+          app.render(<Iii2 u={obj} />); //SysAdmin
+        } else if (obj.Role === 2) {
+          app.render(<Iii3 u={obj} />); //Analitik
+        } else if (obj.Role === 3) {
+          app.render(<Iii4 u={obj} />); //Support
+        }
       }
     }
   });

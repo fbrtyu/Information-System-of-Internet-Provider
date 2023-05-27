@@ -86,6 +86,7 @@ function chtariff() {
 }
 
 export function userTreaty() {
+    ta = [];
 
     const request = new XMLHttpRequest();
 

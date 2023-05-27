@@ -13,6 +13,7 @@ import (
 	"main/modules/userpage"
 	"main/modules/usersup"
 	"main/modules/usertariff"
+	"main/modules/videoconference"
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -39,12 +40,24 @@ func main() {
 	http.HandleFunc("/Reg", auth.Reg)
 	http.HandleFunc("/Login", auth.Login)
 	http.HandleFunc("/lk", userpage.GetUserPage)
+	//http.HandleFunc("/checklk", userpage.CheckUserPage)
 	http.HandleFunc("/tariffs", usertariff.GetTariffs)
 	http.HandleFunc("/settariff", changeusertariff.SetTariff)
 	http.HandleFunc("/chpass", changepassword.ChPass)
 	http.HandleFunc("/chrole", changerole.ChRole)
 	http.HandleFunc("/setinfo", chInfo.SetInfo)
 	http.HandleFunc("/supuser", usersup.GetSup)
+	http.HandleFunc("/sendsup", usersup.SendSup)
+	http.HandleFunc("/getsup", usersup.GetAllSup)
+	http.HandleFunc("/anssup", usersup.AnsSup)
+	http.HandleFunc("/setrole", changerole.SetRole)
+	http.HandleFunc("/updtariff", changeusertariff.UpdTariff)
+	http.HandleFunc("/addtariff", changeusertariff.AddTariff)
+	http.HandleFunc("/streams", videoconference.GetStreams)
+	http.HandleFunc("/setstream", videoconference.SetStream)
+
+	//dt := time.Now()
+	//fmt.Println(dt.Format("2006-01-02"))
 
 	fcm.PushNote()
 	//http.HandleFunc("/s", Stat)

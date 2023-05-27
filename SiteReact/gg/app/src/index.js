@@ -9,92 +9,20 @@ import './Menue/menue2.css'
 import { ShowTariffs } from './tariffs'
 import { getTokenn, onMessageListener  } from './firebase.js'
 
-function App() {
-
-  const [show, setShow] = useState(false);
-  const [notification, setNotification] = useState({title: '', body: ''});
-  const [isTokenFound, setTokenFound] = useState(false);
-  getTokenn(setTokenFound);
-
-  onMessageListener().then(payload => {
-    setShow(true);
-    setNotification({title: payload.notification.title, body: payload.notification.body})
-    //console.log(payload);
-  }).catch(err => console.log('failed: ', err));
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
-        {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
-      </header>
-    </div>
-  );
-}
-
 export function MainPage() {
-  /*   const request = new XMLHttpRequest();
-  
-    const url = "http://localhost:8080/s";
-  
-    request.open("POST", url, true);
-  
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
-    request.addEventListener("readystatechange", () => {
-  
-      if (request.readyState === 4 && request.status === 200) {
-        console.log(request.responseText);
-        document.cookie = "v=" + request.responseText;
-      }
-    });
-  
-    request.send(); */
 
-  /*   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('./sw.js')
-        .then(event => {
-          console.log('Service worker registered', event);
-        });
-  
-      function requestPermission() {
-        return new Promise(function (resolve, reject) {
-          const permissionResult = Notification.requestPermission(function (result) {
-            // Поддержка устаревшей версии с функцией обратного вызова.
-            resolve(result);
-          });
-  
-          if (permissionResult) {
-            permissionResult.then(resolve, reject);
-          }
-        })
-          .then(function (permissionResult) {
-            if (permissionResult !== 'granted') {
-              throw new Error('Permission not granted.');
-            }
-          });
-      }
-  
-      requestPermission();
-    } */
-
-  //const [isTokenFound, setTokenFound] = useState(false);
-  //getTokenn(setTokenFound);
-
-  const [show, setShow] = useState(false);
-  const [notification, setNotification] = useState({title: '', body: ''});
+  //const [show, setShow] = useState(false);
+  //const [notification, setNotification] = useState({title: '', body: ''});
   const [isTokenFound, setTokenFound] = useState(false);
   getTokenn(setTokenFound);
 
-  onMessageListener().then(payload => {
-    setShow(true);
-    //console.log(payload);
-    setNotification({title: payload.data.title, body: payload.data.body})
-  }).catch(err => console.log('failed: ', err));
+  //onMessageListener().then(payload => {
+  //  setShow(true);
+  //  setNotification({title: payload.data.title, body: payload.data.body})
+  //}).catch(err => console.log('failed: ', err));
 
   return (
-    <div>
+    <div id="userInformation">
       <h1>Главная страница</h1>
         {isTokenFound && <>Уведомления включены 👍🏻</>}
         {!isTokenFound && <>Need notification permission ❗️</>}
@@ -117,8 +45,6 @@ export function SetMainPage() {
   if (gc("key")) {
     app.render(<SetUserPage />);
   } else {
-    //app.render(<MainPage />);
-    //app.render(<Menue />);
     menue(<MainPage />);
   }
 }
@@ -201,8 +127,6 @@ function loginFunc() {
     console.log(request.responseText);
 
     if (request.readyState === 4 && request.status === 200 && request.responseText !== "FalseLogin") {
-      //document.cookie = "login=" + login + ";max-age=3600";
-      //document.cookie = "password=" + password + ";max-age=3600";
       document.cookie = "key=" + request.responseText + ";max-age=3600";
       app.render(<SetUserPage />)
     }

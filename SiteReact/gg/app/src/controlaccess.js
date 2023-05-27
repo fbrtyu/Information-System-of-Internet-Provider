@@ -1,8 +1,22 @@
 import React, { useState } from "react"
 import ReactDOMClient from "react-dom/client"
 
-function CtrlAcc(props) {
+var obj;
 
+var ta = [];
+
+var idSup = 0;
+
+function setV(props) {
+  //console.log(props);
+  //console.log(ta);
+  var tariff = ta.find(el => el.Login == props);
+  //console.log(tariff.Body);
+  idSup = tariff.Role;
+  //document.getElementById("speedTariffch").value = tariff.Role;
+}
+
+function CtrlAcc(props) {
     const [value, setValue] = useState('');
 
     const options = props.t.map((item) => {
@@ -17,14 +31,14 @@ function CtrlAcc(props) {
                 <input type="text" id="nameTariffch"></input>
                 <br></br><br></br>
                 <label for="speedTariffch">Роль </label>
-                <input type="text" id="speedTariffch" value={value}></input>
+                <input type="text" id="speedTariffch" value={idSup}></input>
                 <br></br><br></br>
-                <button>Изменить</button>
+                <button onClick={chRole}>Изменить</button>
             </div>
 
             <div>
                 <p>Пользователи</p>
-                    <select id="listTariff" size="3" value={value} onChange={(event) => setValue(event.target.value)}>
+                    <select id="listTariff" size="3" value={value} onChange={(event) => { setValue(event.target.value); setV(event.target.value) }}>
                         {options}
                     </select>
             </div>
@@ -33,10 +47,7 @@ function CtrlAcc(props) {
 }
 
 export function ctrlAcc() {
-
-    var obj;
-
-    var ta = [];
+    ta = [];
 
     const app = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
 
@@ -64,7 +75,25 @@ export function ctrlAcc() {
     });
 
     request.send();
-
-    //const fullinfo = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
-    //fullinfo.render(<CtrlAcc />);
 }
+
+function chRole() {
+    const request = new XMLHttpRequest();
+  
+    const url = "http://localhost:8080/setrole";
+  
+    const params = "Login=" + document.getElementById("listTariff").value + "&Role=" + document.getElementById("nameTariffch").value;
+  
+    request.open("POST", url, true);
+  
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+    request.addEventListener("readystatechange", () => {
+  
+      if (request.readyState === 4 && request.status === 200) {
+        ctrlAcc();
+      }
+    });
+  
+    request.send(params);
+  }

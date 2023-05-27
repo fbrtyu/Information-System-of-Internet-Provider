@@ -5,10 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
+  <link rel='manifest' href='/manifest.json' type="application/manifest+json">
   <title>React App</title>
 </head>
 
 <body>
+  <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+    .register('/sw.js')
+    .then(function (reg) {
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+    })
+    .catch(function (error) {
+    console.error('Trouble with sw: ', error);
+    });
+    }
+   </script>
   <div id="app"></div>
 </body>
 

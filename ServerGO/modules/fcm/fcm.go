@@ -23,7 +23,7 @@ func PushNote() {
 	}
 
 	// This registration token comes from the client FCM SDKs.
-	registrationToken := "dkSHMcmqzjRByF5Ahhy0U5:APA91bFbJFCNq4JsPMtvMXunC0JSyF7cOvSeXF2M5a7qjarfSUYpAJ4hiYin8ZaIOCcvODLCsV_4pSw0BST1lT-R93CJKRoF-bAhEIwiI0vX9BmKZZ6s-dldKTSFZ0VlWZI7ZKziZk2j"
+	registrationToken := "dkSHMcmqzjRByF5Ahhy0U5:APA91bFszlsFWuM61E2m-KBHX0FTUWZTxmED9jky59WLGMhKvWRnjnNJrM74sTCYjLlVEbOgSb5uRMioO0auPgKwsuw30wKMHcjPtInbhc1VxYRgYmBY2DPManP1MJqkEoqMUf27cW6s"
 
 	// See documentation on defining a message payload.
 	message2 := &messaging.Message{
