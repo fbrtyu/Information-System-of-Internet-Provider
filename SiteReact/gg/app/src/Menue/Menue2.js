@@ -22,28 +22,28 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <div className="menue_header">{header}</div>
                     <ul>
                         <li>
-                            <p onClick={show}>Личная информация</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{show(event.target.textContent)}}>Личная информация</p>
+                            <span className="material-icons">🔒</span>
+                        </li>
+
+                        {/* <li>
+                            <p onClick={(event)=>{k(event.target.textContent)}}>Тарифы</p>
+                            <span className="material-icons">🔍</span>
+                        </li> */}
+
+                        <li>
+                            <p onClick={(event)=>{userSupport(event.target.textContent)}}>Поддержка</p>
+                            <span className="material-icons">🔔</span>
                         </li>
 
                         <li>
-                            <p onClick={k}>Тарифы</p>
-                            <span className="material-icons">иконка</span>
-                        </li>
-
-                        <li>
-                            <p onClick={userSupport}>Поддержка</p>
-                            <span className="material-icons">иконка</span>
-                        </li>
-
-                        <li>
-                            <p onClick={userTreaty}>Информация договора</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{userTreaty(event.target.textContent)}}>Информация договора</p>
+                            <span className="material-icons">📃</span>
                         </li>
 
                         <li>
                             <p onClick={exit}>Выйти</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">👋</span>
                         </li>
                     </ul>
                 </div>
@@ -59,18 +59,18 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <div className="menue_header">{header}</div>
                     <ul>
                         <li>
-                            <p onClick={k}>Тарифы</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{k(event.target.textContent)}}>Тарифы</p>
+                            <span className="material-icons">🔍</span>
                         </li>
 
                         <li>
                             <p onClick={SetLogin}>Вход</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">✔️</span>
                         </li>
 
                         <li>
                             <p onClick={SetReg}>Регистрация</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">🔑</span>
                         </li>
                     </ul>
                 </div>
@@ -87,17 +87,17 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <ul>
                         <li>
                             <p><a href="/">Главная</a></p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">🏠</span>
                         </li>
 
                         <li>
                             <p onClick={SetLogin}>Вход</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">✔️</span>
                         </li>
 
                         <li>
                             <p onClick={SetReg}>Регистрация</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">🔑</span>
                         </li>
                     </ul>
                 </div>
@@ -113,31 +113,28 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <div className="menue_header">{header}</div>
                     <ul>
                         <li>
-                            <p onClick={chtariffset}>Управление тарифами</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{chtariffset(event.target.textContent)}}>Управление тарифами</p>
+                            <span className="material-icons">📋</span>
                         </li>
 
                         <li>
-                            <p onClick={ctrlAcc}>Управление правами доступа</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{ctrlAcc(event.target.textContent)}}>Управление правами доступа</p>
+                            <span className="material-icons">🔧</span>
                         </li>
 
                         <li>
-                            <p onClick={VideoChat}>Смотреть трансляцию</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{VideoChat(event.target.textContent)}}>Смотреть трансляцию</p>
+                            <span className="material-icons">👀</span>
                         </li>
 
                         <li>
-                            <p onClick={controlSchedule}>Управление расписанием</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{controlSchedule(event.target.textContent)}}>Управление расписанием</p>
+                            <span className="material-icons">📆</span>
                         </li>
-                        <li>
-                            <p onClick={sysStatClient}>Статистика</p>
-                            <span className="material-icons">иконка</span>
-                        </li>
+
                         <li>
                             <p onClick={exit}>Выйти</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">👋</span>
                         </li>
                     </ul>
                 </div>
@@ -154,32 +151,27 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <ul>
                         <li>
                             <p onClick={show}>Личная информация</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">🔒</span>
                         </li>
 
                         <li>
                             <p onClick={VideoChat}>Смотреть трансляцию</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">👀</span>
                         </li>
 
                         <li>
                             <p onClick={controlSchedule}>Управление расписанием</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">📆</span>
                         </li>
 
                         <li>
-                            <p onClick={sysStatClient}>Статистика</p>
-                            <span className="material-icons">иконка</span>
-                        </li>
-
-                        <li>
-                            <p onClick={getMess}>Сообщения</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={getMess}>Обращения</p>
+                            <span className="material-icons">✍</span>
                         </li>
 
                         <li>
                             <p onClick={exit}>Выйти</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">👋</span>
                         </li>
                     </ul>
                 </div>
@@ -195,23 +187,23 @@ const Menue2 = ({ header, items, active, setActive, g }) => {
                     <div className="menue_header">{header}</div>
                     <ul>
                         <li>
-                            <p onClick={VideoChat}>Смотреть трансляцию</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{VideoChat(event.target.textContent)}}>Смотреть трансляцию</p>
+                            <span className="material-icons">👀</span>
                         </li>
 
                         <li>
-                            <p onClick={controlSchedule}>Управление расписанием</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{controlSchedule(event.target.textContent)}}>Управление расписанием</p>
+                            <span className="material-icons">📆</span>
                         </li>
 
                         <li>
-                            <p onClick={getSup}>Обращения</p>
-                            <span className="material-icons">иконка</span>
+                            <p onClick={(event)=>{getSup(event.target.textContent)}}>Обращения</p>
+                            <span className="material-icons">📞</span>
                         </li>
 
                         <li>
                             <p onClick={exit}>Выйти</p>
-                            <span className="material-icons">иконка</span>
+                            <span className="material-icons">👋</span>
                         </li>
                     </ul>
                 </div>

@@ -10,7 +10,7 @@ function SysStat() {
             <p>Выберите дату до: <input type="date" name="calendar"></input></p>
 
             <textarea placeholder="Результат" id="nameTariffch"></textarea>
-            <button>Вывести</button>
+            <button className="btn">Вывести</button>
         </div>
     )
 }
@@ -23,13 +23,13 @@ function SysStatClient() {
             <p>Выберите дату от: <input type="date" name="calendar"></input></p>
             <p>Выберите дату до: <input type="date" name="calendar"></input></p>
 
-            <button>Покупки</button>
-            <button>Обращения в поддержку</button>
-            <button>Популярные тарифы</button>
+            <button className="btn">Покупки</button>
+            <button className="btn">Обращения в поддержку</button>
+            <button className="btn">Популярные тарифы</button>
 
             <textarea placeholder="Результат" id="nameTariffch"></textarea>
             <p>Графики</p>
-            <button>Вывести</button>
+            <button className="btn">Вывести</button>
         </div>
     )
 }

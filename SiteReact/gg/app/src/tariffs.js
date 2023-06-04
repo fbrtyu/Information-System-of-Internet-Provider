@@ -9,7 +9,8 @@ var obj;
 
 var ta = [];
 
-function tariffs() {
+function tariffs(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
 
     const request = new XMLHttpRequest();
@@ -31,7 +32,6 @@ function tariffs() {
                 ta.push(obj);
             }
         }
-        //app.render(<ShowTariffs t={ta} />);
         const userInformation = ReactDOMClient.createRoot(document.getElementById("userInformation"));
         userInformation.render(<ShowTariffs t={ta} />);
     });
@@ -41,11 +41,11 @@ function tariffs() {
 
 export function ShowTariffs(props) {
     let [click, setClick] = useState("");
-    
+
     let res = props.t.map(function (item) {
-        return <div key={item.ID}>
+        return <div key={item.ID} id="listtariffpc">
             <p>Название: {item.Name}
-                <button id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
+                <button className="btn" id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
                 <p>Скорость: {item.Speed} Мбит/с</p>
                 <p>Стоимость: {item.Cost} руб.</p>
@@ -56,40 +56,39 @@ export function ShowTariffs(props) {
     let res2 = props.t.map(function (item) {
         return <div key={item.ID}>
             <p>Название: {item.Name} Стоимость: {item.Cost}
-                <button onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
+                <button className="btn" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
                 <p>{item.Speed}</p>
-                <button onClick={Buy} value={item.ID}>Оформить</button>
+                <button className="btn" onClick={Buy} value={item.ID}>Оформить</button>
             </div>
         </div>;
     });
 
-    if (gc("login")) {
+    if (gc("logint")) {
         return (
             <div id="userInformation">
-                
                 {res2}
             </div>
         )
     } else {
-        //if (gc("t")) {
-            return (
-                <div id="userInformation">
-                    
-                    {res}
-                </div>
-            )
-        //}
+        //document.getElementById("h1name").textContent = "";
+        return (
+            <div id="listtariff">
+                <h id="hpc">Список тарифов</h>
+                <p><a href="/">Главная</a></p>
+                {res}
+            </div>
+        )
     }
 }
 
 export function ShowTariffs2(props) {
     let [click, setClick] = useState("");
-    
+
     let res = props.t.map(function (item) {
         return <div key={item.ID}>
             <p>Название: {item.Name}
-                <button id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
+                <button className="btn" id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
                 <p>Скорость: {item.Speed} Мбит/с</p>
                 <p>Стоимость: {item.Cost} руб.</p>
@@ -99,11 +98,12 @@ export function ShowTariffs2(props) {
 
     let res2 = props.t.map(function (item) {
         return <div key={item.ID}>
-            <p>Название: {item.Name} Стоимость: {item.Cost}
-                <button onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
+            <p>Название: {item.Name}
+                <button className="btn" id="btntariff" onClick={() => setClick(document.getElementById(item.Name).style.display = "block")}>Подробнее</button></p>
             <div className="full" id={item.Name}>
-                <p>{item.Speed}</p>
-                <button onClick={(e)=>{Buy(e)}} value={item.ID} id={item.Cost}>Оформить</button>
+                <p>Скорость: {item.Speed} Мбит/с</p>
+                <p>Стоимость: {item.Cost} руб.</p>
+                <button className="btn" onClick={(e) => { Buy(e) }} value={item.ID} id={item.Cost}>Оформить</button>
             </div>
         </div>;
     });
@@ -111,8 +111,8 @@ export function ShowTariffs2(props) {
     if (gc("t")) {
         return (
             <div id="userInformation">
-                <p>ФИО</p><input type="text" name="newpass1" placeholder="Новый пароль" id="fio" />
-                <p>Адрес</p><input type="text" name="newpass2" placeholder="Повтор нового пароля" id="address" />
+                <p>ФИО</p><input type="text" required name="newpass1" placeholder="ФИО" id="fio" />
+                <p>Адрес</p><input type="text" required name="newpass2" placeholder="Адрес" id="address" />
                 {res2}
             </div>
         )
@@ -120,7 +120,6 @@ export function ShowTariffs2(props) {
         if (gc("t")) {
             return (
                 <div id="userInformation">
-                    
                     {res}
                 </div>
             )
@@ -129,12 +128,13 @@ export function ShowTariffs2(props) {
 }
 
 function Buy(e) {
+    document.cookie = "t=" + "login" + ";max-age=0";
     const request = new XMLHttpRequest();
 
     const url = "http://localhost:8080/settariff";
 
-    const params = "id=" + e.target.value + "&cost=" + e.target.id + "&address=" + 
-    document.getElementById("address").value + "&fio=" + document.getElementById("fio").value + "&key=" + gc("key");
+    const params = "id=" + e.target.value + "&cost=" + e.target.id + "&address=" +
+        document.getElementById("address").value + "&fio=" + document.getElementById("fio").value + "&key=" + gc("key");
 
     request.open("POST", url, true);
 
@@ -144,7 +144,6 @@ function Buy(e) {
 
         if (request.readyState === 4 && request.status === 200) {
             console.log("OK");
-            //show();
             window.location.reload();
         }
     });
@@ -152,6 +151,6 @@ function Buy(e) {
     request.send(params);
 }
 
-export function k() {
-    return tariffs();
+export function k(e) {
+    return tariffs(e);
 }

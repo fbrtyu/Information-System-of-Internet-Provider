@@ -16,9 +16,6 @@ function setInfo() {
     request.addEventListener("readystatechange", () => {
   
       if (request.readyState === 4 && request.status === 200) {
-        //document.cookie = "key=" + request.responseText + ";max-age=3600";
-        //document.getElementById("chpassb").style.display = "none";
-        //document.getElementById("messchpass").style = "block";
         console.log("Данные изменились!");
       } else {
         console.log(request.status);
@@ -38,7 +35,7 @@ function ChInfo() {
                 <div id="chpass">
                     <p>Новый мобильный</p><input type="text" name="newpass1" placeholder="Новый пароль" id="newpass1" />
                     <p>Новый E-mail</p><input type="text" name="newpass2" placeholder="Повтор нового пароля" id="newpass2" />
-                    <button onClick={setInfo} id="chpassb">Изменить</button>
+                    <button className="btn" onClick={setInfo} id="chpassb">Изменить</button>
                     <a id="messchpass" style={{ display: "none" }} href="/">Пароль успешно изменен, перейти в ЛК</a>
                 </div>
             </div>

@@ -19,28 +19,12 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-/* var ww = 9
-
-func Stat(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	r.ParseForm()
-	ww++
-	bs := []byte(strconv.Itoa(ww))
-	s := "Посещения: " + strconv.FormatInt(int64(ww), ww)
-	data := []byte(s)
-	e := ioutil.WriteFile("stat.txt", data, 0600)
-	if e != nil {
-		fmt.Println("Ошибка создания файла!\n", e)
-	}
-	w.Write(bs)
-} */
-
 func main() {
+	//Пути по которым клиент может обратиться к серверу
 	fmt.Println("Server start!")
 	http.HandleFunc("/Reg", auth.Reg)
 	http.HandleFunc("/Login", auth.Login)
 	http.HandleFunc("/lk", userpage.GetUserPage)
-	//http.HandleFunc("/checklk", userpage.CheckUserPage)
 	http.HandleFunc("/tariffs", usertariff.GetTariffs)
 	http.HandleFunc("/settariff", changeusertariff.SetTariff)
 	http.HandleFunc("/chpass", changepassword.ChPass)
@@ -56,24 +40,21 @@ func main() {
 	http.HandleFunc("/streams", videoconference.GetStreams)
 	http.HandleFunc("/setstream", videoconference.SetStream)
 
-	//dt := time.Now()
-	//fmt.Println(dt.Format("2006-01-02"))
-
+	//Запуск тестового оповещения при включении сервера
 	fcm.PushNote()
-	//http.HandleFunc("/s", Stat)
 
-	//Chat
-	// Create a simple file server
+	//Веб-чат
+	//Создание файлового сервера
 	fs := http.FileServer(http.Dir("public"))
 	http.Handle("/", fs)
 
-	// Configure websocket route
+	//Конфигурация вебсокет соединения
 	http.HandleFunc("/ws", chat.HandleConnections)
 
-	// Start listening for incoming chat messages
+	//Запуск горутины для работы с сообщениями
 	go chat.HandleMessages()
 
-	// Start the server on localhost port 8000 and log any errors
+	//Запуск самого сервера на порту 8080
 	log.Println("http server started on :8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {

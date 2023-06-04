@@ -15,8 +15,7 @@ const {CacheFirst} = workbox.strategies;
 const {CacheableResponse} = workbox.cacheableResponse;
 const {ExpirationPlugin}  = workbox.expiration;
 
-
-navigationPreload: true;
+navigationPreload: false;
   runtimeCaching: [{
     urlPattern: ({request}) => request.mode === 'navigate',
     handler: 'NetworkOnly',
@@ -27,9 +26,6 @@ navigationPreload: true;
       },
     },
   }];
-
-
-
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -154,7 +150,6 @@ registerRoute(
 );
 
 self.addEventListener('fetch', (event) => {
-	
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
@@ -175,6 +170,7 @@ self.addEventListener('fetch', (event) => {
     })());
   }
 });
+
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('pwa-store').then(function(cache) {
@@ -186,7 +182,6 @@ self.addEventListener('install', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  //console.log(e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
       return response || fetch(e.request);

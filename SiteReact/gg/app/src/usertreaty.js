@@ -39,13 +39,13 @@ function UserTreaty(props) {
                 <p>Тариф</p>
                 <div id="inf">
                     <p id="utn">Ваш тариф: {userPage.Name}</p>
-                    <p id="uts">Скорость тарифа: {userPage.Speed} Mbit/s</p>
+                    <p id="uts">Скорость тарифа: {userPage.Speed} Мбит/с</p>
                     <p id="utc">Стоимость тарифа: {userPage.Cost} руб.</p>
                     <br></br>
                     <p id="utn">Новый тариф: {t1}</p>
-                    <p id="uts">Скорость тарифа: {t2} Mbit/s</p>
+                    <p id="uts">Скорость тарифа: {t2} Мбит/с</p>
                     <p id="utc">Стоимость тарифа: {t3} руб.</p>
-                    <button onClick={chtariff} >Сменить тариф</button>
+                    <button className="btn" onClick={chtariff} >Сменить тариф</button>
                 </div>
             </div>
 
@@ -85,7 +85,8 @@ function chtariff() {
     request.send(params);
 }
 
-export function userTreaty() {
+export function userTreaty(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
 
     const request = new XMLHttpRequest();

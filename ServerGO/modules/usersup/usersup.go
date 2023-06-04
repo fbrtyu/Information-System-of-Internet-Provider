@@ -21,7 +21,6 @@ type UserPage struct {
 func GetSup(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	r.ParseForm()
-
 	var user UserPage
 
 	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/test")
@@ -39,7 +38,6 @@ func GetSup(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-
 	defer db.Close()
 
 	var ja string
@@ -80,7 +78,8 @@ func SendSup(w http.ResponseWriter, r *http.Request) {
 	dt := time.Now()
 	fmt.Println(dt.Format("2006-01-02"))
 
-	rowClient, err := db.Query("INSERT INTO support (ID_client, Body, Answer, Date, State) VALUES (?, ?, ?, ?, ?)", user.ID, user.Body, "no", dt.Format("2006-01-02"), true)
+	rowClient, err := db.Query("INSERT INTO support (ID_client, Body, Answer, Date, State) VALUES (?, ?, ?, ?, ?)",
+		user.ID, user.Body, "no", dt.Format("2006-01-02"), true)
 	if err != nil {
 		panic(err)
 	}
@@ -93,7 +92,6 @@ func SendSup(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 	}
-	//w.Write([]byte("OK"))
 }
 
 type Supports struct {

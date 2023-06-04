@@ -2,6 +2,7 @@ package auth
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -43,6 +44,7 @@ func Reg(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(string(hash))
 
 			if !rows.Next() {
+
 				res, err := db.Exec("INSERT INTO userpassword (Login, Password, Cookies) VALUES (?, ?, ?)", data.Login, data.Password, hash)
 				if err != nil {
 					fmt.Println(res)
@@ -102,18 +104,25 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	} else {
 		defer db.Close()
-
 		if !rows.Next() {
 			w.Write([]byte("FalseLogin"))
 		} else {
+			var ja string
 			var user User
 			err = rows.Scan(&user.Login, &user.Password, &user.Cookies)
 			if err != nil {
 				panic(err)
 			}
 
+			res, err := json.Marshal(user)
+			if err != nil {
+				panic(err)
+			} else {
+				ja += ";" + string(res)
+			}
+
 			if user.Password == data.Password {
-				w.Write([]byte(user.Cookies))
+				w.Write([]byte(ja))
 			} else {
 				w.Write([]byte("FalseLogin"))
 			}

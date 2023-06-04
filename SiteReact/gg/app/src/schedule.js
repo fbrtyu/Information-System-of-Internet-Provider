@@ -7,7 +7,8 @@ var obj;
 
 var ta = [];
 
-function tariffs() {
+function tariffs(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
 
     const request = new XMLHttpRequest();
@@ -42,7 +43,7 @@ function ControlSchedule(props) {
     let [click, setClick] = useState("");
 
     let res = props.t.map(function (item) {
-        return <div key={item.ID}>
+        return <div className="lr" key={item.ID}>
             <p>Тема: {item.Theme}</p>
             <p>Дата: {item.Date}</p>
         </div>
@@ -60,14 +61,14 @@ function ControlSchedule(props) {
                 <p>Время: <input type="text" name="time" id="time" placeholder="ЧЧ:ММ:СС"></input></p>
                 <p>Тема: <input type="text" name="themstream" id="themstream"></input></p>
 
-                <button onClick={createStream}>Запланировать</button>
+                <button className="btn" onClick={createStream}>Запланировать</button>
             </div>
         </div>
     )
 }
 
-export function controlSchedule() {
-    tariffs();
+export function controlSchedule(e) {
+    tariffs(e);
 }
 
 function createStream() {

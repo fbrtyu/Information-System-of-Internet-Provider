@@ -7,7 +7,7 @@
 nav {
     height: 50px;
     width: 100%;
-    background-color: gray;
+    background-color: rgb(100, 101, 172);
     position: fixed;
     z-index: 50;
     display: flex;

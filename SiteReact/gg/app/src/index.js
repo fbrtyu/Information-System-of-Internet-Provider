@@ -7,34 +7,30 @@ import { k } from './tariffs'
 import Menue2 from "./Menue/Menue2"
 import './Menue/menue2.css'
 import { ShowTariffs } from './tariffs'
-import { getTokenn, onMessageListener  } from './firebase.js'
+import { getTokenn, onMessageListener } from './firebase.js'
 
 export function MainPage() {
-
-  //const [show, setShow] = useState(false);
-  //const [notification, setNotification] = useState({title: '', body: ''});
   const [isTokenFound, setTokenFound] = useState(false);
   getTokenn(setTokenFound);
 
-  //onMessageListener().then(payload => {
-  //  setShow(true);
-  //  setNotification({title: payload.data.title, body: payload.data.body})
-  //}).catch(err => console.log('failed: ', err));
-
   return (
     <div id="userInformation">
-      <h1>Главная страница</h1>
-        {isTokenFound && <>Уведомления включены 👍🏻</>}
-        {!isTokenFound && <>Need notification permission ❗️</>}
-      <main>
+      <h1 id="h1name">Главная страница</h1>
+      {isTokenFound && <>Уведомления включены 👍🏻</>}
+      {!isTokenFound && <>Need notification permission ❗️</>}
+      <main id="mainpc">
+        <div id="userSettings"> {/* Для пк */}
+          <p onClick={(event)=>{k(event.target.textContent)}}>Тарифы</p>
+          <p onClick={SetLogin}>Вход</p>
+          <p onClick={SetReg}>Регистрация</p>
+        </div>
         <div id="news">
-            <div id="news1">
-              Новости
-            </div>
-
-            <div id="news2">
-              Акции
-            </div>
+          <div id="news1">
+            <p  id="n1">Новости</p>
+          </div>
+          <div id="news2">
+          <p id="n2">Акции</p>
+          </div>
         </div>
       </main>
     </div>
@@ -53,11 +49,11 @@ function Login() {
   return (
     <form className="box" action="/" method="post" id="mainform">
       <h1 id="l">Вход</h1>
-      <p onClick={SetReg}>Регистрация</p>
-      <p onClick={SetMainPage}>Главная</p>
-      <input type="text" name="login" placeholder="Логин" id="login" />
-      <input type="password" name="password" placeholder="Пароль" id="password" />
-      <input type="button" name="do_login" value="Войти" onClick={loginFunc} />
+      <p className="pf" onClick={SetReg}>Регистрация</p>
+      <p className="pf" onClick={SetMainPage}>Главная</p>
+      <input className="bf" type="text" name="login" placeholder="Логин" id="login" />
+      <input className="bf" type="password" name="password" placeholder="Пароль" id="password" />
+      <input type="button" className="btn" name="do_login" value="Войти" onClick={loginFunc} />
     </form>
   );
 }
@@ -70,12 +66,12 @@ function Reg() {
   return (
     <form className="box" action="/" method="post" id="mainform">
       <h1>Регистрация</h1>
-      <p onClick={SetLogin}>Вход</p>
-      <p onClick={SetMainPage}>Главная</p>
+      <p className="pf" onClick={SetLogin}>Вход</p>
+      <p className="pf" onClick={SetMainPage}>Главная</p>
       <input type="text" name="login" placeholder="Логин" id="login" />
       <input type="password" name="password1" placeholder="Пароль" id="password1" />
       <input type="password" name="password2" placeholder="Пароль повтор" id="password2" />
-      <input type="button" name="do_reg" value="Зарегистрироваться" onClick={regFunc} />
+      <input type="button" className="btn" name="do_reg" value="Зарегистрироваться" onClick={regFunc} />
     </form>
   );
 }
@@ -102,6 +98,7 @@ function regFunc() {
   request.addEventListener("readystatechange", () => {
     console.log(request.responseText);
     if (request.readyState === 4 && request.status === 200 && request.responseText !== "Пароли не совпадают!") {
+      document.cookie = "logint=" + login + ";max-age=3600";
       app.render(<Login />)
     }
   });
@@ -110,6 +107,9 @@ function regFunc() {
 }
 
 function loginFunc() {
+  var obj;
+  var ta = [];
+
   let login = document.getElementById("login").value;
   let password = document.getElementById("password").value;
 
@@ -127,7 +127,16 @@ function loginFunc() {
     console.log(request.responseText);
 
     if (request.readyState === 4 && request.status === 200 && request.responseText !== "FalseLogin") {
-      document.cookie = "key=" + request.responseText + ";max-age=3600";
+      var answer = request.responseText;
+      var array = answer.split(';');
+
+      for (let i = 1; i < array.length; i++) {
+        obj = JSON.parse(array[i]);
+        ta.push(obj);
+      }
+
+      document.cookie = "key=" + obj.Cookies + ";max-age=3600";
+      document.cookie = "login=" + obj.Login + ";max-age=3600";
       app.render(<SetUserPage />)
     }
   });
@@ -139,9 +148,10 @@ function loginFunc() {
 export function Menue(props) {
   const [menueActive, setMenueActive] = useState(false);
   const items = [{ value: "Main", href: "/main", icon: "anchor" }, { value: "Main2", href: "/main", icon: "anchor" }]
+
   return (
     <div className="app">
-      <nav>
+      <nav id="navmenu"> {/* Изменение меню */}
         <div className="burger-btn" onClick={() => setMenueActive(!menueActive)}>
           <span></span>
         </div>

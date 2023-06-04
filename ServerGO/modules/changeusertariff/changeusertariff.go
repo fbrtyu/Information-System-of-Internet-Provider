@@ -117,7 +117,8 @@ func AddTariff(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	_, err = db.Exec("INSERT INTO tariff (Speed, Cost, Name) VALUES (?, ?, ?)", r.FormValue("Speed"), r.FormValue("Cost"), r.FormValue("Name"))
+	_, err = db.Exec("INSERT INTO tariff (Speed, Cost, Name) VALUES (?, ?, ?)", r.FormValue("Speed"),
+		r.FormValue("Cost"), r.FormValue("Name"))
 	if err != nil {
 		panic(err)
 	}

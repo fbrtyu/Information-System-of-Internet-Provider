@@ -27,18 +27,25 @@ function CtrlAcc(props) {
         <div id="controlTariff">
             <div>
                 <p>Изменение прав</p>
-                <label for="nameTariffch">ID пользователя </label>
+                <div>
+                <div>
+                <label className="l1" for="nameTariffch">Новая роль </label>
                 <input type="text" id="nameTariffch"></input>
-                <br></br><br></br>
-                <label for="speedTariffch">Роль </label>
+                </div>
+                <br></br>
+                <div>
+                <label className="l1" for="speedTariffch">Роль </label>
                 <input type="text" id="speedTariffch" value={idSup}></input>
-                <br></br><br></br>
-                <button onClick={chRole}>Изменить</button>
+                </div>
+                </div>
+                <br></br>
+                <button className="btn" onClick={chRole}>Изменить</button>
             </div>
 
             <div>
                 <p>Пользователи</p>
-                    <select id="listTariff" size="3" value={value} onChange={(event) => { setValue(event.target.value); setV(event.target.value) }}>
+                    <select id="listTariff" size="3" value={value} onChange={(event) => { 
+                        setValue(event.target.value); setV(event.target.value) }}>
                         {options}
                     </select>
             </div>
@@ -46,7 +53,8 @@ function CtrlAcc(props) {
     )
 }
 
-export function ctrlAcc() {
+export function ctrlAcc(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
 
     const app = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
@@ -82,7 +90,8 @@ function chRole() {
   
     const url = "http://localhost:8080/setrole";
   
-    const params = "Login=" + document.getElementById("listTariff").value + "&Role=" + document.getElementById("nameTariffch").value;
+    const params = "Login=" + document.getElementById("listTariff").value +
+     "&Role=" + document.getElementById("nameTariffch").value;
   
     request.open("POST", url, true);
   

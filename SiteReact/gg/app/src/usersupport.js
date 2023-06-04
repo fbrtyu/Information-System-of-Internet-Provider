@@ -27,12 +27,13 @@ function UserSupport(props) {
 
     return (
         <div id="controlTariff">
-            <div>
+            <div id="sendsup">
                 <p id="suptext">Обращение</p>
                 <textarea placeholder="Текст обращения" id="nameTariffch"></textarea>
-                <br></br><br></br>
-                <button id="btnsup" onClick={sendsup}>Отправить</button>
+                <br></br>
                 <textarea placeholder="Ответ" id="ansSup"></textarea>
+                <br></br>
+                <button className="btn" id="btnsup" onClick={sendsup}>Отправить</button>
             </div>
 
             <div>
@@ -59,17 +60,15 @@ function sendsup() {
     request.addEventListener("readystatechange", () => {
 
         if (request.readyState === 4 && request.status === 200) {
-                //document.getElementById("btnsup").style.display = "none";
-                //document.getElementById("suptext").textContent = "Обращение отправлено";
-                //window.location.reload();
-                userSupport();
+            userSupport();
         }
     });
 
     request.send(params);
 }
 
-export function userSupport() {
+export function userSupport(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
 
     const request = new XMLHttpRequest();

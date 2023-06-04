@@ -1,17 +1,29 @@
 {
-    "name": "js13kGames Progressive Web App",
-    "short_name": "js13kPWA",
-    "description": "Progressive Web App that lists games submitted to the A-Frame category in the js13kGames 2017 competition.",
+    "name": "OrangeGroup Web App",
+    "short_name": "OrangeGroup",
+    "description": "ИС Интернет-Провайдера",
     "icons": [
         {
-            "src": "/icon1.png",
+            "src": "/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
 
         {
-            "src": "/icon2.png",
+            "src": "/logo1.png",
             "sizes": "512x512",
+            "type": "image/png"
+        },
+
+        {
+            "src": "/logo2.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+
+        {
+            "src": "/logo3.png",
+            "sizes": "128x128",
             "type": "image/png"
         }
     ],

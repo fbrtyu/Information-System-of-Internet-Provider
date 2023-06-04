@@ -2,9 +2,60 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #34495e;
+    background: rgb(147, 203, 255);
     text-align: center;
+    height: 100%;
 }
+
+.app {
+    height: 50px;
+}
+
+textarea {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 5px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 3px #999;
+}
+
+select {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 5px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 3px #999;
+}
+
+select {
+    color: #055992;
+    overflow: hidden;
+}
+
+#h1name {
+    color: #000dc4;
+}
+
+select>option {
+    border-radius: 5px;
+}
+
+input {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 3px;
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 3px #999;
+}
+  
 
 .box{
     width: 400px;
@@ -68,14 +119,16 @@ p {
     text-decoration: none;
     font-weight: bold;
     padding: 5px;
-    color:chocolate
+    color:rgb(32, 0, 216);
 }
 
 p:hover {
     text-decoration: none;
     font-weight: bold;
     padding: 5px;
-    color: darkred
+    color: rgb(204, 0, 0);
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #chat {
@@ -93,12 +146,12 @@ p:hover {
 }
 
 a:link {
-    color:#007bcd;
+    color:rgb(36, 0, 243);
     text-decoration: none;
 }
 
 a:visited {
-    color:#0099ff;
+    color:rgb(32, 0, 216);
     text-decoration: none;
 }
 
@@ -117,6 +170,7 @@ a:visited {
 #userSettings {
     display: inline-flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 #userFullInfo {
@@ -127,6 +181,14 @@ a:visited {
 #inf {
     margin-left: 50px;
     margin-right: 50px;
+    background-color: #adacff50;
+    padding: 1px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#inf p {
+    text-align: left;
 }
 
 #listTariff {
@@ -140,6 +202,10 @@ a:visited {
     width: 80%;
     justify-content: space-evenly;
     margin: 10px;
+    background-color: #d3d3d350;
+    padding: 1px;
+    border-radius: 10px;
+    padding-bottom: 30px;
 }
 
 #controlSchedule {
@@ -153,26 +219,42 @@ a:visited {
 #news {
     display: flex;
     flex-direction: row;
+    background-color: #9cb3ff3d;
+    border-radius: 10px;
+}
+
+#n1 {
+    background-color: #0032d600;
+    color: #000000;
+    font-size: 23px;
+}
+
+#n2 {
+    background-color: #0032d600;
+    color: #000000;
+    font-size: 23px;
 }
 
 #news1 {
-    background-color: gray;
+    background-color: rgb(107, 117, 255);
     width: 500px;
     height: 300px;
 
     width: 80%;
     justify-content: space-evenly;
     margin: 10px;
+    border-radius: 10px;
 }
 
 #news2 {
-    background-color: gray;
+    background-color: rgb(107, 117, 255);
     width: 500px;
     height: 300px;
 
     width: 80%;
     justify-content: space-evenly;
     margin: 10px;
+    border-radius: 10px;
 }
 
 #btntariff {
@@ -181,4 +263,275 @@ a:visited {
 
 #chtariff1 {
     text-align: left;
+}
+
+
+
+.lr {
+    background-color: #adacff50;
+    padding: 1px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: left;
+}
+
+#mainpc {
+    padding-top: 0px;
+}
+
+#listtariffpc {
+    margin-bottom: 50px;
+    background-color: #adacff50;
+    padding: 1px;
+    border-radius: 10px;
+    text-align: left;
+    justify-items: left;
+    display: flex;
+    align-items: flex-start;
+}
+
+#hpc {
+    font-size: 20px;
+    color: rgb(28, 158, 152);
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+.btn {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 5px;
+	outline: none;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	height: 20px;
+	line-height: 15px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #444;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;  
+	vertical-align: top;
+	transition: box-shadow 0.2s;
+}
+
+.btn:focus-visible {
+	border: 1px solid #4c51f9;
+	outline: none;
+}
+
+.btn:hover {
+	transition: all 0.2s;
+	box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+
+.btn:active {
+	background-color: #808080;
+}
+
+.btn:disabled {
+	background-color: #eee;
+	border-color: #eee;
+	color: #444;
+	cursor: not-allowed;
+}
+
+
+
+#sendsup {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+#navmenu {
+    display: none;
+}
+
+#getsup {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#videopage {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#video {
+    width: 50vw;
+}
+
+#playerp {
+    padding-left: 25px;
+}
+
+@media (max-width: 699px) {
+    body {
+        height: 100%;
+    }
+
+    #mainpc {
+        padding-top: 10px;
+    }
+
+    #navmenu {
+        display: flex;
+    }
+
+    #controlTariff {
+        flex-direction: column;
+    }
+
+    #news {
+        flex-direction: column;
+    }
+
+    #news1 {
+        width: auto;
+    }
+
+    #news2 {
+        width: auto;
+    }
+
+    #userSettings {
+        width: 688px;
+    }
+
+    #videopage {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #video {
+        width: 85vw;
+    }
+    
+    #playerp {
+        padding-left: 0px;
+    }
+
+    .menue_context {
+        display: none;
+    }
+}
+
+@media (max-width: 699px) {
+    .app {
+        display: block;
+    }
+
+    #userFullInfo {
+        flex-direction: column;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    #userSettings {
+        display: none;
+    }
+
+    #app {
+        width: auto;
+    }
+
+    #chtariff1 {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+    }
+
+    #chtariff2 {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+    }
+
+    #controlSchedule {
+        flex-direction: column;
+    }
+}
+
+p {
+    background-color: #0400ff2d;
+    border-radius: 8px;
+    line-height: 13px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.pf {
+    background-color: #00239700;
+    border-radius: 0px;
+    margin: 10px;
+    color: #2ecc71;
+}
+
+#listtariffpc {
+    margin-bottom: 50px;
+    justify-content: center;
+    display: flex;
+    text-align: left;
+    justify-items: left;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#listtariff {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#nameTariff {
+    width: 120px;
+}
+
+#speedTariff {
+    width: 121px;
+}
+
+#costTariff {
+    width: 120px;
+}
+
+#nameTariffch {
+    width: 120px;
+}
+
+#speedTariffch {
+    width: 121px;
+}
+
+#costTariffch {
+    width: 120px;
+}
+
+#ss {
+    padding-left: 14px;
 }

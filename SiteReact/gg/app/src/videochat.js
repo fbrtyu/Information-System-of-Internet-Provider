@@ -2,6 +2,7 @@ import ReactDOMClient from "react-dom/client"
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Hls from "hls.js";
 import { gc } from './userpage.js'
+import { SetMainPage } from './index.js'
 
 const AppWs = () => {
     const [isPaused, setIsPaused] = useState(false);
@@ -52,29 +53,31 @@ const AppWs = () => {
     return (
         <>
             {!!data &&
-                <div>
-                    <div>
+                <div id="videopage">
+                    <div id="playerp">
                         <h2>{status}</h2>
                         <video id='video' controls></video>
                         <br></br>
-                        <button id="onstream" onClick={vvv}>Включить трансляцию</button>
+                        <button className="btn" id="onstream" onClick={vvv}>Включить трансляцию</button><span> </span>
+                        <button className="btn" onClick={() => {
+                            ws.current.close();
+                            setIsPaused(!isPaused)
+                        }}>{!isPaused ? 'Остановить соединение' : 'Открыть соединение'}</button>
                     </div>
-                    <button onClick={() => {
-                        ws.current.close();
-                        setIsPaused(!isPaused)
-                    }}>{!isPaused ? 'Остановить соединение' : 'Открыть соединение'}</button>
-                    <div>
-                        <p>Сообщение: <input type="text" size="40" id="bs" /></p>
-                    </div>
-                    <button onClick={sm}>Отправить сообщение на сервер</button>
-                    <p id="chat">Chat</p>
 
-                    <select id="chatmess" name="select" size="10" multiple>
-                    </select>
+                    <div>
+                        <p><a href="/">Главная</a></p>
+                        <p id="chat">Веб-чат</p>
+                        <select id="chatmess" name="select" size="10" multiple>
+                        </select>
+                        <p>Сообщение: <input type="text" size="40" id="bs" /></p>
+                        <button className="btn" onClick={sm}>Отправить сообщение</button>
+                    </div>
                 </div>
             }
         </>
     )
+    
     function vvv() {
         if (Hls.isSupported()) {
             var video = document.getElementById('video');
@@ -89,6 +92,7 @@ const AppWs = () => {
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"))
 
-export function VideoChat() {
+export function VideoChat(e) {
+    document.getElementById("h1name").textContent = e;
     app.render(<AppWs />)
 }

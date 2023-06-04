@@ -36,30 +36,30 @@ function Chtariff(props) {
         <div id="controlTariff">
             <div id="chtariff1">
                 <p>Добавить тариф</p>
-                <label htmlFor="nameTariff">Название </label>
+                <label htmlFor="nameTariff">Название<span id="ss"></span></label>
                 <input type="text" id="nameTariff"></input>
                 <br></br><br></br>
-                <label htmlFor="speedTariff">Скорость </label>
+                <label htmlFor="speedTariff">Скорость<span id="ss"></span></label>
                 <input type="text" id="speedTariff"></input>
                 <br></br><br></br>
                 <label htmlFor="costTariff">Стоимость </label>
                 <input type="text" id="costTariff"></input>
                 <br></br><br></br>
-                <button onClick={addtariff}>Добавить</button>
+                <button className="btn" onClick={addtariff}>Добавить</button>
             </div>
 
             <div id="chtariff1">
                 <p>Изменение тарифа</p>
-                <label htmlFor="nameTariffch">Название </label>
+                <label htmlFor="nameTariffch">Название<span id="ss"></span></label>
                 <input type="text" id="nameTariffch"></input>
                 <br></br><br></br>
-                <label htmlFor="speedTariffch">Скорость </label>
-                <input type="text" id="speedTariffch"></input>
+                <label htmlFor="speedTariffch">Скорость<span id="ss"></span></label>
+                <input type="text" id="speedTariffch"></input> Мбит/с
                 <br></br><br></br>
                 <label htmlFor="costTariffch">Стоимость </label>
-                <input type="text" id="costTariffch"></input>
+                <input type="text" id="costTariffch"></input> руб.
                 <br></br><br></br>
-                <button onClick={chtariff}>Изменить</button>
+                <button className="btn" onClick={chtariff}>Изменить</button>
             </div>
 
             <div>
@@ -72,7 +72,8 @@ function Chtariff(props) {
     )
 }
 
-export function chtariffset() {
+export function chtariffset(e) {
+    document.getElementById("h1name").textContent = e;
     ta = [];
     const request = new XMLHttpRequest();
 
@@ -96,13 +97,11 @@ export function chtariffset() {
         const fullinfo = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
         fullinfo.render(<Chtariff t = {ta}/>);
     });
-
     request.send();
 }
 
 function chtariff() {
     const request = new XMLHttpRequest();
-
     const url = "http://localhost:8080/updtariff";
     
     const params = "ID=" + idt + "&Name=" + document.getElementById("nameTariffch").value
@@ -116,19 +115,9 @@ function chtariff() {
     request.addEventListener("readystatechange", () => {
 
         if (request.readyState === 4 && request.status === 200) {
-/*             var answer = request.responseText;
-            var array = answer.split(';');
-
-            for (let i = 1; i < array.length; i++) {
-                obj = JSON.parse(array[i]);
-                ta.push(obj);
-            } */
             chtariffset();
         }
-        //const fullinfo = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
-        //fullinfo.render(<Chtariff t = {ta}/>);
     });
-
     request.send(params);
 }
 
@@ -148,17 +137,8 @@ function addtariff() {
     request.addEventListener("readystatechange", () => {
 
         if (request.readyState === 4 && request.status === 200) {
-/*             var answer = request.responseText;
-            var array = answer.split(';');
-
-            for (let i = 1; i < array.length; i++) {
-                obj = JSON.parse(array[i]);
-                ta.push(obj);
-            } */
             chtariffset();
         }
-        //const fullinfo = ReactDOMClient.createRoot(document.getElementById("fullinfo"));
-        //fullinfo.render(<Chtariff t = {ta}/>);
     });
 
     request.send(params);
