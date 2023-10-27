@@ -23,7 +23,7 @@ React + Golang + MySQL
   e.	Получать push-уведомления.
 
 <div id="header" align="center">
-  <img src="https://drive.google.com/file/d/1Q_aezQpO-hAAN4l6Z6IpTdegSwRbi9dh/view?usp=sharing" width="100"/>
+  <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/1.jpg?raw=true" width="100"/>
 </div>
 
 <div id="header" align="center">
