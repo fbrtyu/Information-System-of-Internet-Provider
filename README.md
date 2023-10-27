@@ -32,7 +32,7 @@
 </br>
 <p>UML диаграмма развертывания </p>
 <div id="header" align="center">
-  <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/2.jpg?raw=true" width="700"/>
+  <img src="2.jpg" width="700"/>
 </div>
 </br>
 <p>Физическая модель БД </p>
