@@ -32,15 +32,15 @@
 </br>
 <p>UML диаграмма развертывания </p>
 <div id="header" align="center">
-  <img src="https://drive.google.com/file/d/1OqrVcO9r8AHWoIgPYazk1HsGfYsB0XCF/view?usp=sharing" width="700"/>
+  <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/2.jpg?raw=true" width="700"/>
 </div>
 </br>
 <p>Физическая модель БД </p>
 <div id="header" align="center">
-  <img src="https://drive.google.com/file/d/1DXgRdnDrZfVwpf2Bw0V-l2jI3e4bPUgN/view?usp=sharing" width="700"/>
+  <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/3.jpg?raw=true" width="700"/>
 </div>
 </br>
 <p>Логическая модель БД </p>
 <div id="header" align="center">
-  <img src="https://drive.google.com/file/d/1vg4mYlpcYFGuWH-cRDi5IyA-mnurnKun/view?usp=sharing" width="700"/>
+  <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/4.jpg?raw=true" width="700"/>
 </div>
