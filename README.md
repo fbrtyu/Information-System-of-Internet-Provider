@@ -70,3 +70,7 @@
 <div id="header" align="center">
   <img src="https://github.com/fbrtyu/Information-System-of-Internet-Provider/blob/main/4.jpg?raw=true" width="700"/>
 </div>
+<p>Настройки rtmp модуля</p>
+<div id="header" align="center">
+  <img src="7.jpg" width="700"/>
+</div>
